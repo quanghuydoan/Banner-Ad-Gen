@@ -1,0 +1,50 @@
+
+const setLayoutProps = (frame: FrameNode | InstanceNode) => {
+    frame.name = 'Frame Here';
+    frame.layoutMode = "VERTICAL";
+    frame.paddingTop = 10;
+    frame.paddingRight = 10;
+    frame.paddingBottom = 10;
+    frame.paddingLeft = 10;
+    frame.itemSpacing = 160;
+};
+
+const sortNodesByPosition = (nodes: any[] | readonly SceneNode[]) => {
+    var result = nodes.map((x: any) => x);
+    result.sort((current: { x: number; }, next: { x: number; }) => {
+        return current.x - next.x;
+    });
+    return result.sort((current: { y: number; }, next: { y: number; }) => current.y - next.y);
+};
+
+
+
+function autoLayout(node: InstanceNode[]) {
+    if (node.length > 1) {
+        let parentConteiner = node[0].parent;
+        let frame = figma.createFrame();
+        if (parentConteiner) {
+            const group = figma.group(node, parentConteiner);
+            frame.x = group.x;
+            frame.y = group.y;
+            frame.backgrounds = [];
+            frame.resize(group.width, group.height);
+            setLayoutProps(frame);
+            let sortedNodes = sortNodesByPosition(node);
+            sortedNodes.map((item: SceneNode) => {
+                frame.appendChild(item);
+            });
+            parentConteiner.appendChild(frame);
+            figma.currentPage.selection = [frame];
+        }
+    } else if (node.length === 1 && node[0].type === "INSTANCE") {
+        console.log("Please select the master component");
+        figma.notify("Please select the master component", { timeout: 4000 });
+    }
+};
+
+
+
+
+
+

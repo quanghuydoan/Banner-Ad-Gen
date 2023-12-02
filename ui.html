@@ -1,0 +1,844 @@
+<head>
+  <link rel="icon" type="image/x-icon" href="https://drive.google.com/file/d/19szIzymrkvtxvYrbOZPrGhpVjHhdD87z/view">
+  <link rel="stylesheet" href="/ui.css" />
+  <link rel="stylesheet" href="https://static.figma.com/api/figma-extension-api-0.0.1.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/thomas-lowry/figma-plugin-ds/dist/figma-plugin-ds.css">
+  <style>
+    .appname,
+    .appname * {
+      box-sizing: border-box;
+    }
+
+    .appname {
+      background: #ffffff;
+      display: flex;
+      flex-direction: column;
+      gap: 0px;
+      align-items: flex-start;
+      justify-content: flex-start;
+      width: 336px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .plugin-header {
+      background: var(--basic-white, #ffffff);
+      border-style: solid;
+      border-color: var(--basic-silver, #fff);
+      border-width: 0px 0px 0px 0px;
+      padding: 0px 4px 0px 8px;
+      display: flex;
+      flex-direction: row;
+      gap: 8px;
+      align-items: center;
+      justify-content: flex-start;
+      align-self: stretch;
+      flex-shrink: 0;
+      height: 40px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .design-system-icon-icon {
+      border-radius: 3px;
+      flex-shrink: 0;
+      width: 24px;
+      height: 24px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .image {
+      width: 24px;
+      height: 24px;
+      position: absolute;
+      left: 0px;
+      top: 0px;
+    }
+
+    .label {
+      display: flex;
+      flex-direction: row;
+      gap: 8px;
+      align-items: center;
+      justify-content: flex-start;
+      flex: 1;
+      height: 32px;
+      position: relative;
+    }
+
+    .title {
+      color: var(--basic-black, #000000);
+      text-align: center;
+      font: var(--body-1-semi-bold, 600 11px/16px "Inter", sans-serif);
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .icon-button {
+      border-radius: 3px;
+      padding: 0px 12px 0px 12px;
+      flex-shrink: 0;
+      width: 32px;
+      height: 32px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    ._32-x {
+      position: absolute;
+      left: 0px;
+      top: 0px;
+      overflow: visible;
+    }
+
+    .assets-sidebar-toolbar {
+      background: var(--basic-white, #ffffff);
+      border-style: solid;
+      border-color: var(--basic-silver, #fff);
+      border-width: 0px 0px 1px 0px;
+      align-self: stretch;
+      flex-shrink: 0;
+      height: 40px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .search {
+      color: #000000;
+      text-align: left;
+      font: var(--body-1-regular, 400 11px/16px "Inter", sans-serif);
+      opacity: 0.30000001192092896;
+      position: absolute;
+      left: 40px;
+      top: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+    }
+
+    ._32-search {
+      width: 32px;
+      height: 32px;
+      position: absolute;
+      left: 8px;
+      top: 4px;
+    }
+
+    .vector3 {
+      position: absolute;
+      left: calc(50% - 8px);
+      top: calc(50% - 8px);
+      overflow: visible;
+    }
+
+    /* . {
+  background: rgba(0, 0, 0, 0.1);
+  height: 1px;
+  position: absolute;
+  right: 0px;
+  left: 0px;
+  bottom: -1px;
+} */
+    .tabs {
+      background: var(--basic-white, #ffffff);
+      border-style: solid;
+      border-color: var(--basic-silver, #fff);
+      border-width: 0px 0px 0px 0px;
+      padding: 0px 16px 0px 16px;
+      display: flex;
+      flex-direction: row;
+      gap: 16px;
+      align-items: flex-start;
+      justify-content: flex-start;
+      align-self: stretch;
+      flex-shrink: 0;
+      height: 40px;
+      position: relative;
+    }
+
+    .tab {
+      display: flex;
+      flex-direction: row;
+      gap: 4px;
+      align-items: center;
+      justify-content: flex-start;
+      align-self: stretch;
+      flex-shrink: 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Style the buttons inside the tab */
+    .tab button {
+      background-color: inherit;
+      float: left;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      padding: 8px 4px;
+      gap: 4px;
+      flex-shrink: 0;
+      flex-direction: row;
+      transition: 0.3s;
+      font-size: 11px;
+    }
+
+    /* Change background color of buttons on hover */
+    .tab button:hover {
+      background-color: #ddd;
+    }
+
+    /* Create an active/current tablink class */
+    .tab button.active {
+      color: var(--basic-black, #000000);
+      text-align: center;
+      font: var(--body-1-semi-bold, 600 12px/16px "Inter", sans-serif);
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .tabcontent {
+      display: none;
+      border: none;
+      border-top: none;
+    }
+
+
+
+
+
+
+
+
+
+
+
+    .title2 {
+      color: var(--basic-black-3, rgba(0, 0, 0, 0.3));
+      text-align: center;
+      font: var(--body-1-semi-bold, 600 11px/16px "Inter", sans-serif);
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .layer {
+      background: var(--basic-white, #ffffff);
+      display: flex;
+      flex-direction: row;
+      gap: 8px;
+      align-items: center;
+      justify-content: flex-start;
+      align-self: stretch;
+      flex-shrink: 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .caret {
+      flex-shrink: 0;
+      width: 16px;
+      height: 16px;
+      position: relative;
+    }
+
+    .right {
+      position: absolute;
+      left: 5px;
+      top: 4px;
+      overflow: visible;
+    }
+
+    .title3 {
+      color: var(--basic-black-8, rgba(0, 0, 0, 0.8));
+      text-align: left;
+      font: var(--body-1-semi-bold, 600 11px/16px "Inter", sans-serif);
+      position: relative;
+      width: 160px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+    }
+
+    .title4 {
+      text-align: left;
+      font: var(--body-1-regular, 400 11px/16px "Inter", sans-serif);
+      position: absolute;
+      /* right: 10px; */
+      left: 21px;
+      /* top: 5px; */
+      display: inline-flex;
+      align-items: center;
+      justify-content: flex-start;
+
+
+
+      border-style: solid;
+      border-color: var(--basic-silver, #e5e5e5);
+      border-width: 0px 0px 1px 0px;
+      padding: 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 0px;
+      align-items: center;
+      justify-content: center;
+      align-self: stretch;
+      flex-shrink: 0;
+      position: relative;
+    }
+
+
+    .right2 {
+      position: absolute;
+      left: 5px;
+      top: 4px;
+      overflow: visible;
+    }
+
+    .right3 {
+      position: absolute;
+      left: 5px;
+      top: 4px;
+      overflow: visible;
+    }
+
+    .right4 {
+      position: absolute;
+      left: 5px;
+      top: 4px;
+      overflow: visible;
+    }
+
+    .tablinks {
+      color: var(--basic-black-3, rgba(0, 0, 0, 0.3));
+      text-align: center;
+      font: var(--body-1-semi-bold, 600 11px/16px "Inter", sans-serif);
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .about-text {
+      background: var(--basic-white, #ffffff);
+      border-style: solid;
+      border-color: var(--basic-silver, #e5e5e5);
+      border-width: 0px 0px 1px 0px;
+      padding: 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 0px;
+      align-items: center;
+      justify-content: center;
+      align-self: stretch;
+      flex-shrink: 0;
+      position: relative;
+    }
+
+    .about-content {
+      border-radius: 2px;
+      padding: 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 0px;
+      align-items: flex-start;
+      justify-content: flex-start;
+      align-self: stretch;
+      flex-shrink: 0;
+      position: relative;
+    }
+
+    .textt {
+      color: var(--basic-black-8, rgba(0, 0, 0, 0.8));
+      text-align: left;
+      font: var(--body-1-regular, 400 11px/16px "Inter", sans-serif);
+      position: relative;
+      align-self: stretch;
+    }
+
+    .section-title {
+      padding: 0px 16px 0px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      align-items: flex-start;
+      justify-content: center;
+      align-self: stretch;
+      flex-shrink: 0;
+      position: relative;
+    }
+
+    .subtitle3 {
+      color: var(--basic-black-8, rgba(0, 0, 0, 0.8));
+      text-align: left;
+      font: var(--body-1-semi-bold, 600 11px/16px "Inter", sans-serif);
+      position: relative;
+      align-self: stretch;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+    }
+
+    .subtext2 {
+      color: var(--basic-black, #000000);
+      text-align: left;
+      font: var(--body-1-regular, 400 11px/16px "Inter", sans-serif);
+      position: relative;
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+    }
+
+    .preview {
+      background: linear-gradient(to left, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2));
+      border-radius: 3px;
+      flex-shrink: 0;
+      width: 16px;
+      height: 16px;
+      position: relative;
+      box-shadow: var(--shadow-small-box-shadow,
+          0px 1px 3px 0px rgba(0, 0, 0, 0.08));
+    }
+
+    .style-value {
+      background: var(--basic-white, #ffffff);
+      padding: 8px 16px 8px 16px;
+      display: flex;
+      flex-direction: row;
+      gap: 8px;
+      align-items: center;
+      justify-content: flex-start;
+      align-self: stretch;
+      flex-shrink: 0;
+      position: relative;
+    }
+
+    .collapsible {
+      cursor: pointer;
+      padding: 12px;
+      width: 100%;
+      border: none;
+      text-align: left;
+      outline: none;
+      font: var(--body-1-semi-bold, 600 11px/16px "Inter", sans-serif);
+      background: var(--basic-white, #ffffff);
+      display: flex;
+      flex-direction: row;
+      gap: 8px;
+      align-items: center;
+      justify-content: flex-start;
+      align-self: stretch;
+      flex-shrink: 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .active,
+    .collapsible:hover {
+      background-color: #ffffff;
+    }
+
+    .contentt {
+      padding: 0 18px;
+      display: none;
+      overflow: hidden;
+      background-color: #ffffff;
+    }
+
+    .button-item {
+      background: var(--basic-white, #ffffff);
+      align-self: stretch;
+      flex-shrink: 0;
+      height: 32px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      cursor: pointer;
+      border: none;
+    }
+
+
+
+
+
+
+    .container {
+      display: block;
+      position: relative;
+      padding-left: 30px;
+      margin-bottom: 12px;
+      cursor: pointer;
+      font-size: 20px;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      text-align: center;
+      font: var(--body-1-regular, 400 12px/16px "Inter", sans-serif);
+      display: inline-flex;
+      align-items: center;
+      justify-content: flex-start;
+    }
+
+    /* Hide the browser's default checkbox */
+    .container input {
+      position: absolute;
+      opacity: 0;
+      cursor: pointer;
+      height: 0;
+      width: 0;
+    }
+
+    /* Create a custom checkbox */
+    .checkmark {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 18px;
+      width: 18px;
+      background-color: #fff;
+    }
+
+    /* On mouse-over, add a grey background color */
+    .container:hover input~.checkmark {
+      background-color: #ffffff;
+    }
+
+    /* When the checkbox is checked, add a blue background */
+    .container input:checked~.checkmark {
+      background-color: #ffffff;
+    }
+
+    /* Create the checkmark/indicator (hidden when not checked) */
+    .checkmark:after {
+      content: "";
+      position: absolute;
+      display: none;
+    }
+
+    /* Show the checkmark when checked */
+    .container input:checked~.checkmark:after {
+      display: block;
+    }
+
+    /* Style the checkmark/indicator */
+    .container .checkmark:after {
+      left: 9px;
+      top: 2px;
+      width: 5px;
+      height: 8px;
+      border: solid rgb(0, 0, 0);
+      border-width: 0 3px 3px 0;
+      -webkit-transform: rotate(45deg);
+      -ms-transform: rotate(45deg);
+      transform: rotate(45deg);
+    }
+  </style>
+  <title>Banner Ad Generator Test</title>
+</head>
+
+<body>
+  <div class="appname">
+    <div class="assets-sidebar-toolbar">
+      <div class="search">Search</div>
+      <div class="_32-search">
+        <svg class="vector3" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" clip-rule="evenodd"
+            d="M11.1034 7.05172C11.1034 9.01329 9.51329 10.6034 7.55172 10.6034C5.59016 10.6034 4 9.01329 4 7.05172C4 5.09016 5.59016 3.5 7.55172 3.5C9.51329 3.5 11.1034 5.09016 11.1034 7.05172ZM10.3972 10.6046C9.61787 11.2296 8.62846 11.6034 7.55172 11.6034C5.03788 11.6034 3 9.56557 3 7.05172C3 4.53788 5.03788 2.5 7.55172 2.5C10.0656 2.5 12.1034 4.53788 12.1034 7.05172C12.1034 8.12858 11.7295 9.1181 11.1044 9.8975L14.3535 13.1467L13.6464 13.8538L10.3972 10.6046Z"
+            fill="black" fill-opacity="0.8" />
+        </svg>
+      </div>
+    </div>
+    <div class="tabs">
+      <div class="tab">
+        <button class="tablinks" onclick="openTab(event, 'print-ad-tab')" id="defaultOpen">Print Ad</button>
+      </div>
+      <div class="tab">
+        <button class="tablinks" onclick="openTab(event, 'digital-ad-tab')">Digital Ad</button>
+      </div>
+      <div class="tab">
+        <button class="tablinks" onclick="openTab(event, 'setting-tab')">Settings</button>
+      </div>
+      <div class="tab">
+        <button class="tablinks" onclick="openTab(event, 'about-tab')">About</button>
+      </div>
+    </div>
+    <form id="print-ad-tab" class="tabcontent">
+      <!-- <button type="button" class="collapsible title3">Airport Ads</button>
+      <div class="contentt"> -->
+      <label type="button" class="container">4224x2560
+        <input type="checkbox" id="op1" value="1de631dfad558fe8d3bb1ba45ccb28cccf00509e">
+
+
+        <span class="checkmark"></span>
+      </label>
+      <label type="button" class="container">4096x2560
+        <input type="checkbox" id="op2" value="2e811aa6eb0ddab92989978ef96f9c926c7cd5e6">
+        <span class="checkmark"></span>
+      </label>
+      <label type="button" class="container">4096x2084
+        <input type="checkbox" id="op3" value="2bdf527c0b47283e7d790ca428b9f9051e8455e7">
+        <span class="checkmark"></span>
+      </label>
+      <label type="button" class="container">2816x2048
+        <input type="checkbox" id="op4" value="19dd7f52001dcaba72999da02464992cba355d83">
+        <span class="checkmark"></span>
+      </label>
+      <label type="button" class="container">2304x2048
+        <input type="checkbox" id="op5" value="5cda746d737c1dafbe5c40d0a4f2a481f94aea81">
+        <span class="checkmark"></span>
+      </label>
+      <label type="button" class="container">1900x2048
+        <input type="checkbox" id="op6" value="a83e8ffdbf492ac08d1465e801fc5f236461ec13">
+        <span class="checkmark"></span>
+      </label>
+      <!-- </div> -->
+
+      <!-- <button type="button" class="collapsible title3">Elevator Kiosk</button>
+      <div class="contentt">
+      </div>
+
+      <button type="button" class="collapsible title3">Standee</button>
+      <div class="contentt" >
+      </div> -->
+    </form>
+
+    <div id="digital-ad-tab" class="tabcontent">
+      <button type="button" class="collapsible title3">Facebook</button>
+      <div class="contentt">
+        <button type="button" class="button-item title4">Cover photo</button>
+        <button type="button" class="button-item title4">Avatar</button>
+        <button type="button" class="button-item title4">Avatar</button>
+        <button type="button" class="button-item title4">Avatar</button>
+      </div>
+
+      <button type="button" class="collapsible title3">Google Ads</button>
+      <div class="contentt">
+        <button type="button" class="button-item title4">1920x1080</button>
+        <button type="button" class="button-item title4">1600x1200</button>
+      </div>
+
+      <button type="button" class="collapsible title3">Twitter (X)</button>
+      <div class="contentt">
+        <button type="button" class="button-item title4">3000x1000</button>
+        <button type="button" class="button-item title4">4224x2560</button>
+      </div>
+      <button type="button" class="collapsible title3">LinkedIn</button>
+      <div class="contentt">
+        <button type="button" class="button-item title4">3000x1000</button>
+        <button type="button" class="button-item title4">4224x2560</button>
+      </div>
+    </div>
+
+    <div id="setting-tab" class="tabcontent">
+      <button type="button" class="collapsible title3">Facebook</button>
+      <div class="contentt">
+        <button type="button" class="button-item title4" id="create">Cover photooooooooooooooooooooooooo</button>
+        <button type="button" class="button-item title4" id="create1">Avatar Avatar Avatar Avatar Avatar</button>
+        <button type="button" class="button-item title4" id="create2">Avatar</button>
+        <button type="button" class="button-item title4" id="create3">Avatar</button>
+      </div>
+
+      <button type="button" class="collapsible title3">Elevator</button>
+      <div class="contentt">
+        <button type="button" class="button-item title4">1920x1080</button>
+        <button type="button" class="button-item title4">1600x1200</button>
+      </div>
+
+      <button type="button" class="collapsible title3">Standee</button>
+      <div class="contentt">
+        <button type="button" class="button-item title4">3000x1000</button>
+        <button type="button" class="button-item title4">4224x2560</button>
+      </div>
+    </div>
+
+    <div id="about-tab" class="tabcontent">
+      <div class="about-text">
+        <div class="about-content">
+          <div class="textt">
+            The plugin contains a collection of image sizes for both prints and
+            digital ads, which allows you to quickly generate scalable components
+            for fast adoption into different sizes.<br /><br />Let us know if the
+            information in the plugin is out of date.
+          </div>
+        </div>
+      </div>
+      <div class="section-title">
+        <div class="subtitle3">Contact us</div>
+      </div>
+      <div class="style-value">
+        <img class="preview" src="/src/discord.png" />
+        <div class="subtext2">Discord</div>
+      </div>
+      <div class="style-value">
+        <img class="preview" src="/src/telegram.png" />
+        <div class="subtext2">Telegram</div>
+      </div>
+    </div>
+
+    <div class="tabs">
+      <label for="headline" class="title">Input Headline:</label>
+      <input type="text" id="headline" name="headline" placeholder="Enter Headline Here" value="This is your headline">
+    </div>
+    <div class="tabs">
+      <label for="description" class="title">Input Description:</label>
+      <input type="text" id="description" name="description" placeholder="Enter Description Here"
+        value="This is your description">
+    </div>
+
+    <div class="tabs">
+      <label for="description" class="title">Your phone number:</label>
+      <input type="text" id="phone-number" name="phone-number" placeholder="Enter Phone Number Here"
+        value="+98 7654 3210"><br><br>
+    </div>
+    <div class="tabs">
+      <label for="description" class="title">Your email address:</label>
+      <input type="text" id="email-address" name="email-address" placeholder="Enter email address"
+        value="johndoe@example.com"><br><br>
+    </div>
+    <div class="tabs">
+      <label for="description" class="title">Your website:</label>
+      <input type="text" id="website" name="website" placeholder="Enter your website" value="yourwebsite.com"><br><br>
+    </div>
+    <div class="tabs">
+      <label for="logo" class="title">Upload SVG Logo:</label>
+      <input type="file" id="logo-upload" accept=".svg">
+    </div>
+
+    <div class="tabs">
+      <label for="logo" class="title">Upload Key Visual:</label>
+      <input type="file" id="image-upload" accept="image/*">
+    </div>
+
+
+
+    <div class="tabs title2">
+      <input type="button" value="Create Ad" id="create-ad">
+    </div>
+  </div>
+  <div class="message" id="messageArea"></div>
+
+</body>
+
+</html>
+
+<script>
+  //Handling the tab button
+  function openTab(evt, tabName) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tabcontent.length; i++) {
+      tabcontent[i].style.display = "none";
+    }
+    for (i = 0; i < tablinks.length; i++) {
+      tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(tabName).style.display = "block";
+    evt.currentTarget.className += " active";
+  }
+  document.getElementById("defaultOpen").click();
+  //Handling the collapsible button
+  var coll = document.getElementsByClassName("collapsible");
+  var i;
+  for (i = 0; i < coll.length; i++) {
+    coll[i].addEventListener("click", function () {
+      this.classList.toggle("active");
+      var content = this.nextElementSibling;
+      if (content.style.display === "block") {
+        content.style.display = "none";
+      } else {
+        content.style.display = "block";
+      }
+    });
+  }
+  //handle the image buffer
+  function readFileAsArrayBuffer(file) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        resolve(event.target.result);
+      };
+      reader.onerror = reject;
+      reader.readAsArrayBuffer(file);
+    });
+  }
+  //Handle the submit button
+  const createBtn = document.getElementById('create-ad');
+  const svgInput = document.getElementById('logo-upload'); //SVG file upload
+  const imageInput = document.getElementById('image-upload'); //Image file upload
+
+  const headline = document.getElementById('headline');
+  const description = document.getElementById('description');
+  const phone = document.getElementById('phone-number');
+  const email = document.getElementById('email-address');
+  const website = document.getElementById('website');
+  const messageArea = document.getElementById("messageArea");
+
+
+  let svgString = '';
+  function handleSVGstring() {
+    const svgFile = svgInput.files[0];
+    if (svgFile) {
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        if (e.target && e.target.result) {
+          svgString = e.target.result;
+        }
+      };
+      reader.readAsText(svgFile);
+    }
+  }
+
+  //createBtn.onclick = () => {
+  createBtn.addEventListener('click', async () => {
+    //Handle the extracted data from checkbox
+    const selectedOptions = [];
+    const checkedForm = document.getElementById('print-ad-tab');
+    const checkedboxes = checkedForm.querySelectorAll('input[type="checkbox"]');
+    const headlineValue = headline.value;
+    const descriptionValue = description.value;
+    const phoneValue = phone.value;
+    const emailValue = email.value;
+    const websiteValue = website.value;
+    checkedboxes.forEach(checkbox => {
+      if (checkbox.checked) {
+        selectedOptions.push(checkbox.value)
+      }
+    })
+    //handle the svg file uploaded
+    const svgFile = svgInput.files[0];
+    if (svgFile) {
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        if (e.target && e.target.result) {
+          svgString = e.target.result;
+        }
+      };
+      reader.readAsText(svgFile);
+    }
+    //handle the key visual image uploaded
+    let fileBuffer = new Uint8Array;
+    const imageFile = imageInput.files[0];
+    if (imageFile) {
+      fileBuffer = await readFileAsArrayBuffer(imageFile);
+    }
+    else { messageArea.textContent = "Please upload your key visual"};
+    //handle the key visual image uploaded
+    if (svgString) {
+      console.log('pressed');
+      parent.postMessage({ pluginMessage: { type: 'create-banner-ad', data: { selectedOptions, svgString, fileBuffer, headlineValue, descriptionValue, phoneValue, emailValue, websiteValue } } }, '*');
+    }
+    else { messageArea.textContent = "Please upload your logo as SVG"};
+
+  })
+</script>
